@@ -6,6 +6,7 @@ import com.softwaredesign.demo.dto.ReturnArticleDto;
 import com.softwaredesign.demo.repository.ArticleRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,13 @@ public class ArticleService {
         }
 
         return ResponseEntity.ok().body(new ReturnAriticleListDto(articleList));
+    }
+
+    public ResponseEntity<ReturnArticleDto> getArticle(Long article_id) {
+        Article result = articleRepository.findById(article_id)
+            .orElseThrow();
+
+        return ResponseEntity.ok().body(new ReturnArticleDto(result.getId(), result.getOwner(),
+            result.getTitle(), result.getImage(), result.getText(), result.getTime()));
     }
 }

@@ -1,7 +1,9 @@
 package com.softwaredesign.demo.controller;
 
 import com.softwaredesign.demo.dto.ReturnAriticleListDto;
+import com.softwaredesign.demo.dto.ReturnArticleDto;
 import com.softwaredesign.demo.service.ArticleService;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +20,9 @@ public class ArticleController {
     }
 
     @GetMapping("/{article_id}")
-    public HttpStatus getArticle(@PathVariable("article_id") long article_id) {
+    public ResponseEntity<ReturnArticleDto> getArticle(@PathVariable("article_id") long article_id) {
 
-        return HttpStatus.OK;
+        return articleService.getArticle(article_id);
     }
 
     @PatchMapping("/{article_id}")
