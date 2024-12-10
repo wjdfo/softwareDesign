@@ -45,12 +45,34 @@ public class MemberService {
             }
 
             // 비밀번호 불일치
-            returnLoginDto.setMessage("password error");
+            else {returnLoginDto.setMessage("password error");}
             return new ResponseEntity<ReturnLoginDto>(returnLoginDto, HttpStatus.BAD_REQUEST);
         }
 
         // ID 불일치
         else {returnLoginDto.setMessage(request.getId() + " does not exist.");}
             return new ResponseEntity<ReturnLoginDto>(returnLoginDto, HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<ReturnMyPageDto> modifyPassword(RequestMyPageDto request) {
+        ReturnMyPageDto returnMyPageDto = new ReturnMyPageDto(request.getId());
+        HttpStatus code = HttpStatus.BAD_REQUEST;
+
+        System.out.println(request.getPassword());
+
+        // 새로운 비밀번호가 현재 비밀번호와 같은 경우
+        if (memberRepository.existsByIdAndPassword(request.getId(), request.getPassword())) {
+            returnMyPageDto.setMessage("new password must be different with current one.");
+        }
+
+        else {
+            System.out.println(request.getPassword());
+            if (memberRepository.updatePassword(request.getId(), request.getPassword()) > 0) {
+                code = HttpStatus.OK;
+                returnMyPageDto.setMessage("password is changed.");
+            }
+        }
+
+        return new ResponseEntity<ReturnMyPageDto>(returnMyPageDto, code);
     }
 }
