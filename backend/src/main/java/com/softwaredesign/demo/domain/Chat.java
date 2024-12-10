@@ -8,22 +8,22 @@ import lombok.*;
 @RequiredArgsConstructor
 public class Chat {
     @Id
-    @Column(name = "Chat_ID", updatable = false)
+    @Column(name = "id", updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public final Long chat_id;
 
-    @Column(name = "Send_ID")
+    @Column(name = "Send_ID", nullable = false)
     public final String sender;
 
-    @Column(name = "Receive_ID")
+    @Column(name = "Receive_ID", nullable = false)
     public final String receiver;
 
-    @Column(name = "Article_ID")
+    @Column(name = "Article_ID", nullable = false)
     public final String article_id;
 
     @Column(name = "message")
     public final String message;
 
-    @Column(name = "time")
+    @Column(name = "time", nullable = false)
     public final String time;
 }
