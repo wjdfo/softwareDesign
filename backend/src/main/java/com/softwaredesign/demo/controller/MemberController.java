@@ -1,18 +1,23 @@
 package com.softwaredesign.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.softwaredesign.demo.dto.RequestRegisterDto;
+import com.softwaredesign.demo.dto.ReturnRegisterDto;
+import com.softwaredesign.demo.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/member")
-public class UserController {
+@RequiredArgsConstructor
+public class MemberController {
+    private final MemberService memberService;
 
     @PostMapping("/register")
-    public HttpStatus registerMember() {
+    public HttpStatus registerMember(@RequestBody RequestRegisterDto request) {
 
-        return HttpStatus.OK;
+        return memberService.register(request).getMessage();
     }
 
     @PostMapping("/login")
