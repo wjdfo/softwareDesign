@@ -1,16 +1,20 @@
 package com.softwaredesign.demo.controller;
 
-import org.springframework.http.HttpStatus;
+import com.softwaredesign.demo.dto.ReturnAriticleListDto;
+import com.softwaredesign.demo.service.ArticleService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/article")
+@RequiredArgsConstructor
 public class ArticleController {
+    private final ArticleService articleService;
 
     @GetMapping("/")
-    public HttpStatus getArticleList() {
-
-        return HttpStatus.OK;
+    public ResponseEntity<ReturnAriticleListDto> getArticleList() {
+        return articleService.getArticleList();
     }
 
     @GetMapping("/{article_id}")
