@@ -1,12 +1,11 @@
 package com.softwaredesign.demo.service;
 
 import com.softwaredesign.demo.domain.Article;
-import com.softwaredesign.demo.dto.ReturnAriticleListDto;
-import com.softwaredesign.demo.dto.ReturnArticleDto;
+import com.softwaredesign.demo.dto.*;
 import com.softwaredesign.demo.repository.ArticleRepository;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,5 +32,20 @@ public class ArticleService {
 
         return ResponseEntity.ok().body(new ReturnArticleDto(result.getId(), result.getOwner(),
             result.getTitle(), result.getImage(), result.getText(), result.getTime()));
+    }
+
+    public ResponseEntity<ReturnArticleUploadDto> uploadArticle(RequestArticleUploadDto request) {
+
+        Article article = Article.builder()
+            .owner(request.getMember_id())
+            .title(request.getTitle())
+            .image(request.getImage())
+            .text(request.getText())
+            .time(LocalDateTime.now())
+            .build();
+
+        articleRepository.save(article);
+
+        return ResponseEntity.ok().body(new ReturnArticleUploadDto(request.getTitle() + " is uploaded successfully"));
     }
 }

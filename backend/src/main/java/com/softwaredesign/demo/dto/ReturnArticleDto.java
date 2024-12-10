@@ -1,5 +1,6 @@
 package com.softwaredesign.demo.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.*;
 
@@ -12,5 +13,5 @@ public class ReturnArticleDto {
     private final String title;
     private String image;
     private String text;
-    private Date time;
+    private LocalDateTime time;
 }

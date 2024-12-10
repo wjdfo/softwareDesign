@@ -1,5 +1,6 @@
 package com.softwaredesign.demo.controller;
 
+import com.softwaredesign.demo.dto.RequestArticleUploadDto;
 import com.softwaredesign.demo.dto.ReturnAriticleListDto;
 import com.softwaredesign.demo.dto.ReturnArticleDto;
 import com.softwaredesign.demo.service.ArticleService;
@@ -25,14 +26,14 @@ public class ArticleController {
         return articleService.getArticle(article_id);
     }
 
-    @PatchMapping("/{article_id}")
-    public HttpStatus modifyArticle(@PathVariable("article_id") long article_id) {
+    @PutMapping("/")
+    public HttpStatus uploadArticle(@RequestBody RequestArticleUploadDto request) {
 
         return HttpStatus.OK;
     }
 
-    @PutMapping("/")
-    public HttpStatus uploadArticle() {
+    @PatchMapping("/{article_id}")
+    public HttpStatus modifyArticle(@PathVariable("article_id") long article_id) {
 
         return HttpStatus.OK;
     }

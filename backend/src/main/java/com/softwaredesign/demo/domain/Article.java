@@ -1,7 +1,7 @@
 package com.softwaredesign.demo.domain;
 
 import jakarta.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import lombok.*;
 
 @Entity
@@ -28,5 +28,5 @@ public class Article {
     private String text;
 
     @Column(name = "Time", nullable = false)
-    private Date time;
+    private LocalDateTime time;
 }
