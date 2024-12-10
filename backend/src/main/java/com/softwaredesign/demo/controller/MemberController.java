@@ -1,6 +1,8 @@
 package com.softwaredesign.demo.controller;
 
+import com.softwaredesign.demo.dto.RequestLoginDto;
 import com.softwaredesign.demo.dto.RequestRegisterDto;
+import com.softwaredesign.demo.dto.ReturnLoginDto;
 import com.softwaredesign.demo.dto.ReturnRegisterDto;
 import com.softwaredesign.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -15,15 +17,13 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/register")
-    public HttpStatus registerMember(@RequestBody RequestRegisterDto request) {
-
-        return memberService.register(request).getMessage();
+    public ResponseEntity<ReturnRegisterDto> registerMember(@RequestBody RequestRegisterDto request) {
+        return memberService.register(request);
     }
 
     @PostMapping("/login")
-    public HttpStatus loginMember() {
-
-        return HttpStatus.OK;
+    public ResponseEntity<ReturnLoginDto> loginMember(@RequestBody RequestLoginDto request) {
+        return memberService.login(request);
     }
 
     @GetMapping("/")

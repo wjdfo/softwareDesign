@@ -1,10 +1,12 @@
 package com.softwaredesign.demo.dto;
 
 import lombok.*;
+import org.springframework.http.HttpStatus;
 
 @Data
 @RequiredArgsConstructor
-public class RequestRegisterDto {
+@Setter
+public class ReturnLoginDto {
+    private String message;
     private final String id;
-    private final String password;
 }
