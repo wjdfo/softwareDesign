@@ -35,6 +35,7 @@ public class ArticleService {
     }
 
     public ResponseEntity<ReturnArticleUploadDto> uploadArticle(RequestArticleUploadDto request) {
+        ReturnArticleUploadDto response = new ReturnArticleUploadDto(request.getTitle());
 
         Article article = Article.builder()
             .owner(request.getMember_id())
@@ -45,7 +46,8 @@ public class ArticleService {
             .build();
 
         articleRepository.save(article);
+        response.setMessage(request.getTitle() + " is uploaded successfully");
 
-        return ResponseEntity.ok().body(new ReturnArticleUploadDto(request.getTitle() + " is uploaded successfully"));
+        return ResponseEntity.ok().body(response);
     }
 }

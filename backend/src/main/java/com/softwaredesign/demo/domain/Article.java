@@ -6,20 +6,20 @@ import lombok.*;
 
 @Entity
 @Getter
-@RequiredArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Article_id")
-    private final Long id;
+    private Long id;
 
     @Column(name = "Owner_ID", nullable = false)
-    private final String owner;
+    private String owner;
 
     @Column(name = "title", nullable = false)
-    private final String title;
+    private String title;
 
     @Column(name = "Image")
     private String image;

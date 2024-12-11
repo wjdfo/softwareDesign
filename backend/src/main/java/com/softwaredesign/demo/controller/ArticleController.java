@@ -3,6 +3,7 @@ package com.softwaredesign.demo.controller;
 import com.softwaredesign.demo.dto.RequestArticleUploadDto;
 import com.softwaredesign.demo.dto.ReturnAriticleListDto;
 import com.softwaredesign.demo.dto.ReturnArticleDto;
+import com.softwaredesign.demo.dto.ReturnArticleUploadDto;
 import com.softwaredesign.demo.service.ArticleService;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +28,9 @@ public class ArticleController {
     }
 
     @PutMapping("/")
-    public HttpStatus uploadArticle(@RequestBody RequestArticleUploadDto request) {
+    public ResponseEntity<ReturnArticleUploadDto> uploadArticle(@RequestBody RequestArticleUploadDto request) {
 
-        return HttpStatus.OK;
+        return articleService.uploadArticle(request);
     }
 
     @PatchMapping("/{article_id}")

@@ -4,10 +4,10 @@ import lombok.*;
 
 @Data
 @AllArgsConstructor
-@RequiredArgsConstructor
+@Getter
 public class RequestArticleUploadDto {
-    private final String member_id;
-    private final String title;
+    private String member_id;
+    private String title;
     private String image;
     private String text;
 }
