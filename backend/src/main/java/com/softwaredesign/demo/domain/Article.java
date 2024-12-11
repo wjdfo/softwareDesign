@@ -6,17 +6,17 @@ import lombok.*;
 
 @Entity
 @Getter
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Article_id")
-    private Long id;
+    private Long article_id;
 
     @Column(name = "Owner_ID", nullable = false)
-    private String owner;
+    private String owner_id;
 
     @Column(name = "title", nullable = false)
     private String title;

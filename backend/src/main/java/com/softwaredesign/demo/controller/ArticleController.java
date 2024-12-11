@@ -1,11 +1,12 @@
 package com.softwaredesign.demo.controller;
 
+import com.softwaredesign.demo.dto.DeleteDto;
+import com.softwaredesign.demo.dto.RequestArticleDeleteDto;
 import com.softwaredesign.demo.dto.RequestArticleUploadDto;
 import com.softwaredesign.demo.dto.ReturnAriticleListDto;
 import com.softwaredesign.demo.dto.ReturnArticleDto;
 import com.softwaredesign.demo.dto.ReturnArticleUploadDto;
 import com.softwaredesign.demo.service.ArticleService;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +35,20 @@ public class ArticleController {
     }
 
     @PatchMapping("/{article_id}")
-    public HttpStatus modifyArticle(@PathVariable("article_id") long article_id) {
+    public HttpStatus modifyArticle(@PathVariable("article_id") Long article_id) {
 
         return HttpStatus.OK;
     }
 
     @DeleteMapping("/{article_id}")
-    public HttpStatus deleteArticle(@PathVariable("article_id") long article_id) {
+    public HttpStatus deleteArticle(@PathVariable("article_id") Long article_id,
+        @RequestBody RequestArticleDeleteDto request) {
 
-        return HttpStatus.OK;
+        DeleteDto deleteDto = DeleteDto.builder()
+            .member_id(request.getMember_id())
+            .article_id(article_id)
+            .build();
+
+        return articleService.deleteArticle(deleteDto);
     }
 }
