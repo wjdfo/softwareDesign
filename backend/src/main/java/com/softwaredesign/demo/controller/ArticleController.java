@@ -1,6 +1,7 @@
 package com.softwaredesign.demo.controller;
 
-import com.softwaredesign.demo.dto.DeleteDto;
+import com.softwaredesign.demo.dto.ArticleDeleteDto;
+import com.softwaredesign.demo.dto.ArticleModifyDto;
 import com.softwaredesign.demo.dto.RequestArticleDeleteDto;
 import com.softwaredesign.demo.dto.RequestArticleUploadDto;
 import com.softwaredesign.demo.dto.ReturnAriticleListDto;
@@ -35,20 +36,27 @@ public class ArticleController {
     }
 
     @PatchMapping("/{article_id}")
-    public HttpStatus modifyArticle(@PathVariable("article_id") Long article_id) {
+    public HttpStatus modifyArticle(@PathVariable("article_id") Long article_id, @RequestBody RequestArticleUploadDto request) {
+        ArticleModifyDto articleModifyDto = ArticleModifyDto.builder()
+            .article_id(article_id)
+            .member_id(request.getMember_id())
+            .title(request.getTitle())
+            .image(request.getImage())
+            .text(request.getText())
+            .build();
 
-        return HttpStatus.OK;
+        return articleService.modifyArticle(articleModifyDto);
     }
 
     @DeleteMapping("/{article_id}")
     public HttpStatus deleteArticle(@PathVariable("article_id") Long article_id,
         @RequestBody RequestArticleDeleteDto request) {
 
-        DeleteDto deleteDto = DeleteDto.builder()
+        ArticleDeleteDto articleDeleteDto = ArticleDeleteDto.builder()
             .member_id(request.getMember_id())
             .article_id(article_id)
             .build();
 
-        return articleService.deleteArticle(deleteDto);
+        return articleService.deleteArticle(articleDeleteDto);
     }
 }

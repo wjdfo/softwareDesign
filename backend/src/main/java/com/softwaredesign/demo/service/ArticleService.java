@@ -3,7 +3,6 @@ package com.softwaredesign.demo.service;
 import com.softwaredesign.demo.domain.Article;
 import com.softwaredesign.demo.dto.*;
 import com.softwaredesign.demo.repository.ArticleRepository;
-import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.*;
 import lombok.RequiredArgsConstructor;
@@ -55,9 +54,21 @@ public class ArticleService {
     }
 
     // 게시글 수정
+    public HttpStatus modifyArticle(ArticleModifyDto request) {
+        if (articleRepository.updateArticleByMemberIdAndArticleId(
+            request.getTitle(),
+            request.getImage(),
+            request.getText(),
+            request.getMember_id(),
+            request.getArticle_id()
+        ) > 0 ) {
+            return HttpStatus.OK;
+        }
+        return HttpStatus.BAD_REQUEST;
+    }
 
     // 게시글 삭제
-    public HttpStatus deleteArticle(DeleteDto request) {
+    public HttpStatus deleteArticle(ArticleDeleteDto request) {
         if (articleRepository.deleteByArticleIdAndMemberId(
             request.getMember_id(),
             request.getArticle_id()) > 0) {
