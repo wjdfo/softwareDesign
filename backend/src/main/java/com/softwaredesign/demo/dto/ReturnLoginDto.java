@@ -8,5 +8,5 @@ import org.springframework.http.HttpStatus;
 @Setter
 public class ReturnLoginDto {
     private String message;
-    private final String id;
+    private final String member_id;
 }

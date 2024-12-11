@@ -6,6 +6,6 @@ import lombok.*;
 @RequiredArgsConstructor
 @Setter
 public class ReturnMyPageDto {
-    private final String id;
+    private final String member_id;
     private String message;
 }

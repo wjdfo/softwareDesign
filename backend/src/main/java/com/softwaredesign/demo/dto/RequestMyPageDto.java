@@ -6,6 +6,6 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 public class RequestMyPageDto {
-    private String id;
+    private String member_id;
     private String password;
 }

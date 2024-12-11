@@ -9,5 +9,5 @@ import org.springframework.http.HttpStatus;
 @Getter
 public class ReturnRegisterDto {
     private HttpStatus message;
-    private final String id;
+    private final String member_id;
 }

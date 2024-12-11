@@ -5,6 +5,6 @@ import lombok.*;
 @Data
 @RequiredArgsConstructor
 public class RequestRegisterDto {
-    private final String id;
+    private final String member_id;
     private final String password;
 }
