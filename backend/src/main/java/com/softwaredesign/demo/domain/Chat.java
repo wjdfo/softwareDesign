@@ -14,22 +14,22 @@ import lombok.*;
 @Builder
 public class Chat {
     @Id
-    @Column(name = "message_id", updatable = false)
+    @Column(name = "message_id", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long message_id;
 
-    @Column(name = "chat_id", updatable = false)
+    @Column(name = "chat_id", updatable = false, nullable = false)
     private Long chat_id;
 
-    @Column(name = "receiver_id", updatable = false)
+    @Column(name = "receiver_id", updatable = false, nullable = false)
     private String receiver_id;
 
-    @Column(name = "sender_id", updatable = false)
+    @Column(name = "sender_id", updatable = false, nullable = false)
     private String sender_id;
 
-    @Column(name = "message", updatable = false)
+    @Column(name = "message", updatable = false, nullable = false)
     private String message;
 
-    @Column(name = "time", updatable = false)
+    @Column(name = "time", updatable = false, nullable = false)
     private LocalDateTime time;
 }
