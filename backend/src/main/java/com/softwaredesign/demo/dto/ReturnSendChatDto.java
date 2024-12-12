@@ -3,10 +3,10 @@ package com.softwaredesign.demo.dto;
 import lombok.*;
 
 @Data
+@AllArgsConstructor
 @Builder
-@Getter
-public class SendChatDto {
-    private Long chat_id;
+public class ReturnSendChatDto {
     private String sender_id;
+    private String receiver_id;
     private String message;
 }

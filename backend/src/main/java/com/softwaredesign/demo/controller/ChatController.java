@@ -20,12 +20,23 @@ public class ChatController {
     }
 
     @PostMapping("/article/{article_id}")
-    public ResponseEntity<ReturnMakeChatDto> sendChat(@PathVariable("article_id") Long article_id, @RequestBody RequestChatDto request){
+    public ResponseEntity<ReturnMakeChatDto> makeChat(@PathVariable("article_id") Long article_id, @RequestBody RequestChatDto request){
         MakeChatDto makeChatDto = MakeChatDto.builder()
             .member_id(request.getMember_id())
             .article_id(article_id)
             .build();
 
         return chatService.makeChat(makeChatDto);
+    }
+
+    @PostMapping("/{chat_id}")
+    public ResponseEntity<ReturnSendChatDto> sendChat(@PathVariable("chat_id") Long chat_id, @RequestBody RequestSendChatDto request) {
+        SendChatDto sendChatDto = SendChatDto.builder()
+            .chat_id(chat_id)
+            .sender_id(request.getMember_id())
+            .message(request.getMessage())
+            .build();
+
+        return chatService.sendChat(sendChatDto);
     }
 }
