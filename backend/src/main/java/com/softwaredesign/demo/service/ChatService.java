@@ -18,13 +18,13 @@ public class ChatService {
     private final ArticleRepository articleRepository;
     private final ChatRepository chatRepository;
 
-    public ResponseEntity<ReturnChatListDto> getChat(RequestGetChatListDto request) {
+    public ResponseEntity<ReturnChatListDto> getChatList(RequestGetChatListDto request) {
         ReturnChatListDto response = ReturnChatListDto.builder()
             .response(HttpStatus.OK)
             .chat_Info_list(chatInfoRepository.findChatInfoByMemberId(request.getMember_id()))
             .build();
 
-        for (ChatList temp : response.getChat_Info_list()) {
+        for (ChatListDto temp : response.getChat_Info_list()) {
             System.out.println(temp.getChat_id() + " " + temp.getArticle_id() + " " + temp.getArticle_title());
         }
 
@@ -53,6 +53,13 @@ public class ChatService {
             } catch (EmptyResultDataAccessException e) {
                 throw new RuntimeException(e);
         }
+    }
+
+    public ResponseEntity<ReturnGetChatDto> getChat(RequestGetChatDto request) {
+
+        return ResponseEntity.ok().body(ReturnGetChatDto.builder()
+            .chat_list(chatRepository.findAllByChatId(request.getChat_id()))
+            .build());
     }
 
     public ResponseEntity<ReturnSendChatDto> sendChat(SendChatDto request) {
