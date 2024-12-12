@@ -25,5 +25,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
         @Param("article_id") Long article_id
     );
 
+    @Query("select a.owner_id from Article a where a.article_id = :article_id")
+    String findOwnerByArticleId(
+        @Param("article_id") Long article_id
+    );
 }
 
