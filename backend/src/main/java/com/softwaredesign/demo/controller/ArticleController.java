@@ -1,12 +1,6 @@
 package com.softwaredesign.demo.controller;
 
-import com.softwaredesign.demo.dto.ArticleDeleteDto;
-import com.softwaredesign.demo.dto.ArticleModifyDto;
-import com.softwaredesign.demo.dto.RequestArticleDeleteDto;
-import com.softwaredesign.demo.dto.RequestArticleUploadDto;
-import com.softwaredesign.demo.dto.ReturnAriticleListDto;
-import com.softwaredesign.demo.dto.ReturnArticleDto;
-import com.softwaredesign.demo.dto.ReturnArticleUploadDto;
+import com.softwaredesign.demo.dto.*;
 import com.softwaredesign.demo.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;

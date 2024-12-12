@@ -29,5 +29,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     String findOwnerByArticleId(
         @Param("article_id") Long article_id
     );
+
 }
 

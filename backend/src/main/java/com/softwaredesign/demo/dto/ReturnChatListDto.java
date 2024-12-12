@@ -10,6 +10,5 @@ import org.springframework.http.HttpStatus;
 @Builder
 public class ReturnChatListDto {
     private HttpStatus response;
-    private String member_id;
-    private List<ChatInfo> chat_Info_list;
+    private List<ChatList> chat_Info_list;
 }

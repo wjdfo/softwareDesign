@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 public class ChatInfo {
     @Id
-    @Column(name = "id", updatable = false)
+    @Column(name = "chat_id", updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long chat_id;
 
