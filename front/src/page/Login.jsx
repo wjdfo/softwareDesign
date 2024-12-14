@@ -11,6 +11,8 @@ export default function Login() {
 
         const Id = event.target.Id.value;
         const password = event.target.password.value;
+        console.log(Id, password);
+        console.log("성공했나!?");
 
         try {
             const response = await fetch('http://localhost:8080/api/member/login', {
@@ -37,7 +39,7 @@ export default function Login() {
     }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <input id = 'Id' type = 'text' placeholder = 'ID'></input>
             <input id = 'password' type = 'password'></input>
             <button type='submit'>제출</button>
