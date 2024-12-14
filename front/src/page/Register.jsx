@@ -19,8 +19,8 @@ export default function Register() {
                     "member_id" : id,
                     "password" : password
                 }),
-            }).then((response) => {
-                if (response.ok) {
+            }).then(async (response) => {
+                if ( await response.ok) {
                     alert("회원 가입 성공!");
                     navigate('/login');
                 }
@@ -37,7 +37,7 @@ export default function Register() {
         <form onSubmit = { handleSubmit }>
             <input id = 'ID' type="text"></input>
             <input id = 'password' type='password'></input>
-            <button type="submit">제출</button>
+            <button type="submit">Sign up</button>
         </form>
     )
 }
