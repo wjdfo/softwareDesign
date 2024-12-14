@@ -8,11 +8,11 @@ export default function LoginHeader() {
     const navigate = useNavigate();
     const {isLogin, setIsLogin} = useContext(LoginContext);
 
-    function logout() {   
-        navigate('/');
+    function logout() {
         setIsLogin(false);
-        sessionStorage.removeItem('member');
+        sessionStorage.removeItem('member_id');
         alert("로그아웃 되었습니다.");
+        navigate('/');
     }
 
     return (
