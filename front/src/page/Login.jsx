@@ -11,8 +11,6 @@ export default function Login() {
 
         const Id = event.target.Id.value;
         const password = event.target.password.value;
-        console.log(Id, password);
-        console.log("성공했나!?");
 
         try {
             const response = await fetch('http://localhost:8080/api/member/login', {
@@ -21,14 +19,22 @@ export default function Login() {
                     'Content-Type' : 'application/json',
                 },
                 body : JSON.stringify({
-                    member_id : Id, password
+                    "member_id" : Id,
+                    "password" : password
                 }),
-            }).then((response) => {
-                const data = response.json();
-                sessionStorage.setItem("member_id", data.member_id);
-                setIsLogin(true);
-                alert('로그인 되었습니다.');
-                navigate('/');
+            }).then(async (response) => {
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                    console.log(data.member_id);
+                    sessionStorage.setItem("member_id", data.member_id);
+                    setIsLogin(true);
+                    alert('로그인 되었습니다.');
+                    navigate('/');
+                }
+                else {
+                    alert('로그인 실패');
+                }
 
             })
         } catch {
@@ -42,7 +48,7 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
             <input id = 'Id' type = 'text' placeholder = 'ID'></input>
             <input id = 'password' type = 'password'></input>
-            <button type='submit'>제출</button>
+            <button type='submit'>Sign in</button>
         </form>
     )
 }
