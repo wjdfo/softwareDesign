@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, createContext, useContext } from 'react';
+import Main from './page/Main';
+import Login from './page/Login';
+import Register from './page/Register';
+import MyPage from './page/MyPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginHeader from './header/Header';
+import Session from 'react-session-api';
+
+export const LoginContext = createContext();
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <LoginContext.Provider value = {{isLogin, setIsLogin}}>
+      <BrowserRouter>
+        <LoginHeader />
+        <Routes>
+          <Route path = '/login' element = {<Login/>}/>
+          <Route path = '/' element = {<Main/>} />
+          <Route path = '/mypage' element = {<MyPage/>}/>
+          <Route path = '/register' element = {<Register/>}/>
+        </Routes>
+      </BrowserRouter>
+    </LoginContext.Provider>
+  )
 }
 
 export default App;

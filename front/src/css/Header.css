@@ -1,0 +1,8 @@
+a {
+    margin-right : 10px;
+    cursor : pointer;
+    
+    &:hover {
+        box-shadow: 0 0 7px 0 #15182f inset, 0 0 10px 4px white;
+    }
+}
