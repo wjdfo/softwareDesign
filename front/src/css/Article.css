@@ -1,0 +1,49 @@
+.articleDetail {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* Header 스타일 - 제목과 시간 */
+.articleHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 5px solid #000;
+}
+
+.articleTitle h2 {
+    font-size: 1.8rem; /* 제목 크기 크게 설정 */
+    color: #333;
+    margin: 0;
+}
+
+.articleTime h4 {
+    font-size: 0.5rem; /* 시간 크기 작게 설정 */
+    color: #666;
+    margin: 0;
+}
+
+/* 이미지 스타일 */
+.articleImage {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.articleImage h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+/* 내용 스타일 */
+.articleContent h4 {
+    font-size: 1.1rem; /* 텍스트 크기 설정 */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
