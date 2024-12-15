@@ -8,7 +8,6 @@ export default function LoginHeader() {
     const {isLogin, setIsLogin} = useContext(LoginContext);
 
     function logout() {
-        console.log("왜 로그아웃이 되냐 씨발");
         setIsLogin(false);
         sessionStorage.removeItem('member_id');
         alert("로그아웃 되었습니다.");

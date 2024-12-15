@@ -26,8 +26,7 @@ export default function Login() {
             }).then(async (response) => {
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data);
-                    console.log(data.member_id);
+
                     sessionStorage.setItem("member_id", data.member_id);
                     setIsLogin(true);
                     alert('로그인 되었습니다.');

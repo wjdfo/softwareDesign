@@ -26,8 +26,6 @@ export default function DetailChat() {
                 method : 'GET',
             }).then(async (response) => {
                 const data = await response.json();
-                
-                console.log(data);
 
                 const result = data.chat_list.map((chat) => ({
                     sender_id : chat.sender_id,
@@ -68,7 +66,6 @@ export default function DetailChat() {
                     "message" : message,
                 }),
             }).then((response) => {
-                console.log(response);
                 const time = new Date();
 
                 if (response.ok) {
