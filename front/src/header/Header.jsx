@@ -29,6 +29,7 @@ export default function LoginHeader() {
                         {/* <a onClick = {() => {setIsLogin(false); navigate('/');}}>마이페이지</a> */}
                         <a onClick = {() => navigate('/mypage')}>마이페이지</a>
                         <a onClick = {logout}>로그아웃</a>
+                        <a onClick = {() => navigate('/chat')}>Chat</a>
                     </div>
                     ) 
                     : (

@@ -3,7 +3,9 @@ import Main from './page/Main';
 import Login from './page/Login';
 import Register from './page/Register';
 import MyPage from './page/MyPage';
-import Article from './page/Article'
+import Article from './page/Article';
+import Chat from './page/Chat';
+import DetailChat from './page/DetailChat';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginHeader from './header/Header';
 
@@ -21,7 +23,9 @@ function App() {
           <Route path = '/' element = {<Main/>} />
           <Route path = '/mypage' element = {<MyPage/>}/>
           <Route path = '/register' element = {<Register/>}/>
-          <Route path = "/article/:article_id" element={<Article />} />
+          <Route path = "/article/:article_id" element = {<Article />} />
+          <Route path = "/chat" element = {<Chat />} />
+          <Route path = "/chat/:chat_id" element = {<DetailChat />} />
         </Routes>
       </BrowserRouter>
     </LoginContext.Provider>
