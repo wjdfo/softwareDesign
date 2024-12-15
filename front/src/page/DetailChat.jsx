@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../css/DetailChat.css';
 
@@ -18,11 +18,7 @@ export default function DetailChat() {
     const { chat_id } = useParams();
     const [chatContent, setChatContent] = useState([]);
     const navigate = useNavigate();
-
-    // localhost:8080/api/chat/{chat_id}
-    
-    console.log(id);
-    console.log(chat_id);
+    const chatListRef = useRef(null);
 
     async function getChatContent() {
         try {
@@ -50,9 +46,54 @@ export default function DetailChat() {
         getChatContent();
     }, []);
 
+    useEffect(() => {
+        // chatContent가 변경될 때 스크롤을 가장 아래로 설정
+        if (chatListRef.current) {
+            chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
+        }
+    }, [chatContent]);
+
+    async function sendChat(event) {
+        event.preventDefault();
+        const message = event.target.message.value;
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/chat/${chat_id}`, {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json',
+                },
+                body : JSON.stringify({
+                    "member_id" : id,
+                    "message" : message,
+                }),
+            }).then((response) => {
+                console.log(response);
+                const time = new Date();
+
+                if (response.ok) {
+                    const newMessage = {
+                        sender_id: id,
+                        message: message,
+                        time: time.toISOString(),
+                    };
+        
+                    // 새로운 메시지를 채팅 리스트에 추가
+                    setChatContent((prevChatContent) => [...prevChatContent, newMessage]);
+        
+                    // 입력 필드 초기화
+                    event.target.reset();
+                }
+            }) 
+        } catch (error) {
+            console.log("채팅 보내기 실패", error);
+        }
+    }
+
+
     return (
         <div className = 'body'>
-            <div className = 'chatList'>
+            <div className = 'chatList' ref={chatListRef}>
                 {chatContent.map((chat, chatIndex) => (
                     id === chat.sender_id
                     ? (
@@ -77,6 +118,10 @@ export default function DetailChat() {
                     )
                 ))}
             </div>
+            <form onSubmit = {sendChat}>
+                <input className = 'sendChat' id = 'message' type = 'text' placeholder='메시지를 입력하세요.'></input>
+                <button type = 'submit'>전송</button>
+            </form>
         </div>
     )
 }

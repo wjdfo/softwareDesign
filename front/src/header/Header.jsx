@@ -2,13 +2,13 @@ import { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../css/Header.css';
 import { LoginContext } from '../App';
-import {Session} from 'react-session-api';
 
 export default function LoginHeader() {
     const navigate = useNavigate();
     const {isLogin, setIsLogin} = useContext(LoginContext);
 
     function logout() {
+        console.log("왜 로그아웃이 되냐 씨발");
         setIsLogin(false);
         sessionStorage.removeItem('member_id');
         alert("로그아웃 되었습니다.");
@@ -28,7 +28,7 @@ export default function LoginHeader() {
                     <div>
                         {/* <a onClick = {() => {setIsLogin(false); navigate('/');}}>마이페이지</a> */}
                         <a onClick = {() => navigate('/mypage')}>마이페이지</a>
-                        <a onClick = {logout}>로그아웃</a>
+                        <a onClick = {() => {logout()}}>로그아웃</a>
                         <a onClick = {() => navigate('/chat')}>Chat</a>
                     </div>
                     ) 
