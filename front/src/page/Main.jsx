@@ -5,7 +5,6 @@ import '../css/Main.css';
 export default function Main() {
     const navigate = useNavigate();
     const [articleList, setArticleList] = useState([]);
-    const result = [];
 
     async function getArticle() {
         const response = await fetch('http://localhost:8080/api/article/', {

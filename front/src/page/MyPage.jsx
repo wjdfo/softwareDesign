@@ -13,7 +13,7 @@ export default function MyPage() {
             <h4>{id}</h4>
             <button onClick = {console.log("hi")}>ID 변경</button>
             <div>
-                {/* 게시글 리스트 보여주기 */}
+                {/* 내 게시글 리스트 보여주기 */}
             </div>
         </div>
     )
