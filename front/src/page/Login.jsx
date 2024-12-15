@@ -1,6 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import { LoginContext } from '../App';
 import React, {useContext} from 'react';
+import '../css/Login.css';
 
 export default function Login() {
     const {isLogin, setIsLogin} = useContext(LoginContext);
@@ -47,7 +48,7 @@ export default function Login() {
     return (
         <form onSubmit={handleSubmit}>
             <input id = 'Id' type = 'text' placeholder = 'ID'></input>
-            <input id = 'password' type = 'password'></input>
+            <input id = 'password' type = 'password' placeholder = 'PASSWORD'></input>
             <button type='submit'>Sign in</button>
         </form>
     )

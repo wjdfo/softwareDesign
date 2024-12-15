@@ -35,8 +35,8 @@ export default function Register() {
 
     return (
         <form onSubmit = { handleSubmit }>
-            <input id = 'ID' type="text"></input>
-            <input id = 'password' type='password'></input>
+            <input id = 'ID' type = "text" placeholder = "ID"></input>
+            <input id = 'password' type = 'password' placeholder = "PASSWORD"></input>
             <button type="submit">Sign up</button>
         </form>
     )
