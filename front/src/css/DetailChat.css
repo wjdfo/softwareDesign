@@ -1,0 +1,61 @@
+.body {
+    width : 100vw;
+    align-items: center;
+}
+.chatList {
+    width : 80vw;
+    margin-left : auto;
+    margin-right : auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto; /* 스크롤 */
+}
+
+.mychat {
+    margin-right : auto;
+}
+
+.otherchat {
+    margin-left : auto;
+}
+
+.mychat-component {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0; /* 메시지 박스 배경 */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.otherchat-component {
+    background-color: #90b0d1;
+    padding : 10px;
+    display : flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.mychat h3, .otherchat h3 {
+    margin: 0;
+    margin-left : 5px;
+    font-size : 15px;
+}
+
+.otherchat-component h4 {
+    margin: 0;
+    font-size: 12px; /* 시간 텍스트 크기 조절 */
+    color: gray;
+}
+
+.mychat-component h4 {
+    margin: 0;
+    margin-left : auto;
+    font-size: 12px; /* 시간 텍스트 크기 조절 */
+    color: gray;
+}
+
+.mychat-component h3, .otherchat-component {
+    margin : 0;
+}
