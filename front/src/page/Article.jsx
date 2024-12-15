@@ -20,8 +20,6 @@ function formatDateTime(dateString) {
 export default function Article() {
     const { article_id } = useParams();
     const [article, setArticle] = useState({});
-    
-    console.log(article_id);
 
     async function getDetailArticle(article_id) {
         try {
