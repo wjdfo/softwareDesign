@@ -47,13 +47,12 @@ export default function Main() {
         chunnkedArticles.push(articleList.slice(i, i+3));
     }
 
-
     return (
         <div className = "board">
             {chunnkedArticles.map((row, rowIndex) => (
                 <div className = "row" key = {rowIndex}>
                     {row.map((article, articleIndex) => (
-                        <div className = "article" key = {articleIndex}>
+                        <div className = "article" key = {article.id} onClick={() => navigate('/article/${article.id}')}>
                             <h3>{article.title}</h3>
                         </div>
                     ))}
