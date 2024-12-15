@@ -1,0 +1,34 @@
+.chatList {
+    margin-top : 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 각 채팅 박스 간격 */
+    align-items: center;
+}
+
+.chat {
+    width : 500px;
+    height : 30px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    background-color: #fff;
+}
+
+.chat:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.chat h3 {
+    margin-left : auto;
+    margin-right : auto;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    align-items: center;
+}
