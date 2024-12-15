@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/Chat.css';
 
 export default function Chat() {
     const id = sessionStorage.getItem("member_id");
