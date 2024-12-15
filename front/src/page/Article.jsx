@@ -1,5 +1,21 @@
 import { useParams } from "react-router-dom";
 import {useEffect, useState} from 'react';
+import '../css/Article.css';
+
+function formatDateTime(dateString) {
+    const date = new Date(dateString);
+    const options = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false, // 24시간 형식
+    };
+    
+    return date.toLocaleString('en-GB', options).replace(/,/, '');
+}
 
 export default function Article() {
     const { article_id } = useParams();
@@ -35,7 +51,7 @@ export default function Article() {
                 <div className = 'articleTitle'>
                     <h2>{article.title}</h2>
                 </div>
-                <h4>{article.time}</h4>
+                <h4>{formatDateTime(article.time)}</h4>
             </div>
             <div className = 'articleImage'>
                 <h3>{article.image}</h3>
