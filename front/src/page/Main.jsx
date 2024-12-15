@@ -35,13 +35,6 @@ export default function Main() {
         getArticle();
     },[]);
 
-    console.log(articleList.length);
-    for (let i = 0; i< articleList.length; i++) {
-        console.log(
-            articleList[i].article_id, articleList[i].title
-        );
-    }
-
     const chunnkedArticles = [];
     for (let i = 0; i < articleList.length; i += 3) {
         chunnkedArticles.push(articleList.slice(i, i+3));
@@ -52,7 +45,7 @@ export default function Main() {
             {chunnkedArticles.map((row, rowIndex) => (
                 <div className = "row" key = {rowIndex}>
                     {row.map((article, articleIndex) => (
-                        <div className = "article" key = {article.id} onClick={() => navigate('/article/${article.id}')}>
+                        <div className = "article" key = {article.article_id} onClick={() => navigate(`/article/${article.article_id}`)}>
                             <h3>{article.title}</h3>
                         </div>
                     ))}

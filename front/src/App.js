@@ -21,7 +21,7 @@ function App() {
           <Route path = '/' element = {<Main/>} />
           <Route path = '/mypage' element = {<MyPage/>}/>
           <Route path = '/register' element = {<Register/>}/>
-          <Route path="/article/:article_id" element={<Article />} />
+          <Route path = "/article/:article_id" element={<Article />} />
         </Routes>
       </BrowserRouter>
     </LoginContext.Provider>
