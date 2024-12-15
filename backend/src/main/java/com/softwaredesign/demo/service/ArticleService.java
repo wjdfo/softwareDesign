@@ -19,6 +19,8 @@ public class ArticleService {
         List<ReturnArticleDto> articleList = new ArrayList<>();
         List<Article> result = articleRepository.findAll();
 
+        result.sort(Comparator.comparing(Article::getTime).reversed());
+
         for (Article row : result) {
             articleList.add(new ReturnArticleDto(row.getArticle_id(), row.getOwner_id(), row.getTitle(), row.getImage(), row.getText(), row.getTime()));
         }
