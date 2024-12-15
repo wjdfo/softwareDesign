@@ -1,12 +1,12 @@
 package com.softwaredesign.demo.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.*;
 
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Getter
 public class ReturnArticleDto {
     private final Long id;
     private final String owner_id;
