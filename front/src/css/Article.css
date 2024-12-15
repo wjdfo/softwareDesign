@@ -47,3 +47,41 @@
     line-height: 1.6;
     margin: 0;
 }
+
+#button {
+    width : 50px;
+    height: 35px;
+    font-size: small;
+    text-align: center;
+    background-color: red;
+    align-content: center;
+    transition : transform 0.3s ease;
+}
+
+.subHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap : 15px;
+    align-items: center;
+}
+
+.myOption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap : 5px;
+}
+
+#modify {
+    background-color: yellowgreen;
+}
+
+#modify:hover, #delete:hover {
+    background-color: cornflowerblue;
+    transform : translateY(-2px);
+}
+
+#delete {
+    background-color: red;
+}

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {useEffect, useState} from 'react';
 import '../css/Article.css';
 
@@ -20,6 +20,8 @@ function formatDateTime(dateString) {
 export default function Article() {
     const { article_id } = useParams();
     const [article, setArticle] = useState({});
+    const navigate = useNavigate();
+    const id = sessionStorage.getItem("member_id");
 
     async function getDetailArticle(article_id) {
         try {
@@ -28,7 +30,6 @@ export default function Article() {
             }).then(async (response) => {
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data);
                     setArticle(data);
                 }
             });
@@ -41,6 +42,31 @@ export default function Article() {
         getDetailArticle(article_id);
     },[])
 
+    async function makeChat(event) {
+        try {
+            const response = fetch(`http://localhost:8080/api/chat/article/${article_id}`, {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json',
+                },
+                body : JSON.stringify({
+                    'member_id' : id,
+                }),
+            }).then(async (response) => {
+                const data = await response.json();
+
+                console.log("Chat is made successfully with ", data.owner_id);
+                navigate('/chat/' + data.chat_id);
+            })
+        } catch (error) {
+            console.log("make chat error : ", error);
+        }
+    }
+
+    // async function modifyArticle(event) {
+    //     event.preventDefault();
+    // }
+
     if (!article) return <div>Loading...</div>;
 
     return (
@@ -49,7 +75,19 @@ export default function Article() {
                 <div className = 'articleTitle'>
                     <h2>{article.title}</h2>
                 </div>
-                <h4>{formatDateTime(article.time)}</h4>
+                <div className = "subHeader">
+                    <h4>{formatDateTime(article.time)}</h4>
+                    {
+                        article.owner_id === id ? (<div className = "myOption">
+                                                        <button type = 'button' id = "modify">수정</button>
+                                                        <button type = 'button' id = 'delete'>삭제</button>
+                                                    </div>)
+                                                : (
+                                                    <button type = 'button' onClick= {() => {makeChat();}}>Chat</button> 
+                                                    
+                                                )
+                    }
+                </div>
             </div>
             <div className = 'articleImage'>
                 <h3>{article.image}</h3>
