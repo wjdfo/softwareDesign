@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import '../css/Article.css';
+import { LoginContext } from "../App";
 
 function formatDateTime(dateString) {
     const date = new Date(dateString);
@@ -23,6 +24,7 @@ export default function Article() {
     const navigate = useNavigate();
     const id = sessionStorage.getItem("member_id");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const {isLogin, setIsLogin} = useContext(LoginContext);
     
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -138,16 +140,14 @@ export default function Article() {
                     </div>
                     <div className = "subHeader">
                         <h4>{formatDateTime(article.time)}</h4>
-                        {
-                            article.owner_id === id ? (<div className = "myOption">
+                        {isLogin ? ( article.owner_id === id ? (<div className = "myOption">
                                                             <button type = 'button' id = "modify" onClick = {openModal}>수정</button>
                                                             <button type = 'button' id = 'delete' onClick = {deleteArticle}>삭제</button>
                                                         </div>)
                                                     : (
                                                         <button type = 'button' onClick= {() => {makeChat();}}>Chat</button> 
-                                                        
-                                                    )
-                        }
+                                                    ))
+                                : console.log("비회원.")}
                     </div>
                 </div>
                 <div className = 'articleImage'>
