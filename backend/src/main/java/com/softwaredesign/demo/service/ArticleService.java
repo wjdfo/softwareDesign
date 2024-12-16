@@ -28,6 +28,19 @@ public class ArticleService {
         return ResponseEntity.ok().body(new ReturnAriticleListDto(articleList));
     }
 
+    public ResponseEntity<ReturnAriticleListDto> getArticleListByOwnerId(RequestMyPageDto request) {
+        List<ReturnArticleDto> articleList = new ArrayList<>();
+        List<Article> result = articleRepository.findAllByOwnerId(request.getMember_id());
+
+        result.sort(Comparator.comparing(Article::getTime).reversed());
+
+        for (Article row : result) {
+            articleList.add(new ReturnArticleDto(row.getArticle_id(), row.getOwner_id(), row.getTitle(), row.getImage(), row.getText(), row.getTime()));
+        }
+
+        return ResponseEntity.ok().body(new ReturnAriticleListDto(articleList));
+    }
+
     // 특정 게시글 조회
     public ResponseEntity<ReturnArticleDto> getArticle(Long article_id) {
         Article result = articleRepository.findById(article_id)

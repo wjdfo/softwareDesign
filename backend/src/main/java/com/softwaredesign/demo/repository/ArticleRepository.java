@@ -2,6 +2,7 @@ package com.softwaredesign.demo.repository;
 
 import com.softwaredesign.demo.domain.Article;
 import jakarta.transaction.Transactional;
+import java.util.List;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -28,6 +29,11 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("select a.owner_id from Article a where a.article_id = :article_id")
     String findOwnerByArticleId(
         @Param("article_id") Long article_id
+    );
+
+    @Query("select a from Article a where a.owner_id = :member_id")
+    List<Article> findAllByOwnerId(
+        @Param("member_id") String member_id
     );
 
 }

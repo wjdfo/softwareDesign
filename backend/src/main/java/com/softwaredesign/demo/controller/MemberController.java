@@ -1,11 +1,7 @@
 package com.softwaredesign.demo.controller;
 
-import com.softwaredesign.demo.dto.RequestLoginDto;
-import com.softwaredesign.demo.dto.RequestMyPageDto;
-import com.softwaredesign.demo.dto.RequestRegisterDto;
-import com.softwaredesign.demo.dto.ReturnLoginDto;
-import com.softwaredesign.demo.dto.ReturnMyPageDto;
-import com.softwaredesign.demo.dto.ReturnRegisterDto;
+import com.softwaredesign.demo.dto.*;
+import com.softwaredesign.demo.service.*;
 import com.softwaredesign.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+    private final ArticleService articleService;
 
     @PostMapping("/register")
     public ResponseEntity<ReturnRegisterDto> registerMember(@RequestBody RequestRegisterDto request) {
@@ -28,12 +25,10 @@ public class MemberController {
         return memberService.login(request);
     }
 
-    //my page 기능은 front에서 구현 (ID만 보여줌)
-//    @GetMapping("/")
-//    public HttpStatus myPage(@RequestBody RequestMyPageDto request) {
-//
-//        return HttpStatus.OK;
-//    }
+    @GetMapping("/")
+    public ResponseEntity<ReturnAriticleListDto> myPage(@RequestBody RequestMyPageDto request) {
+        return articleService.getArticleListByOwnerId(request);
+    }
 
     @PatchMapping("/")
     public ResponseEntity<ReturnMyPageDto> modifyMyPage(@RequestBody RequestMyPageDto request) {
