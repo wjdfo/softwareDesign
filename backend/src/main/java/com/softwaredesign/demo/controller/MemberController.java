@@ -25,7 +25,7 @@ public class MemberController {
         return memberService.login(request);
     }
 
-    @GetMapping("/")
+    @PostMapping("/")
     public ResponseEntity<ReturnAriticleListDto> myPage(@RequestBody RequestMyPageDto request) {
         return articleService.getArticleListByOwnerId(request);
     }
