@@ -41,16 +41,22 @@ export default function Main() {
     }
 
     return (
-        <div className = "board">
-            {chunnkedArticles.map((row, rowIndex) => (
-                <div className = "row" key = {rowIndex}>
-                    {row.map((article, articleIndex) => (
-                        <div className = "article" key = {article.article_id} onClick={() => navigate(`/article/${article.article_id}`)}>
-                            <h3>{article.title}</h3>
-                        </div>
-                    ))}
-                </div>
-            ))}
+        <div className = 'main'>
+            <div className = 'header'>
+                <h2>게시글 리스트</h2>
+                <button>업로드</button>
+            </div>
+            <div className = "board">
+                {chunnkedArticles.map((row, rowIndex) => (
+                    <div className = "row" key = {rowIndex}>
+                        {row.map((article, articleIndex) => (
+                            <div className = "article" key = {article.article_id} onClick={() => navigate(`/article/${article.article_id}`)}>
+                                <h3>{article.title}</h3>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
