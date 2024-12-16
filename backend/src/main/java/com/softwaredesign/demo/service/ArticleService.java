@@ -64,6 +64,8 @@ public class ArticleService {
 
         articleRepository.save(article);
         response.setMessage(request.getTitle() + " is uploaded successfully");
+        response.setArticle_id(article.getArticle_id());
+        response.setTime(LocalDateTime.now());
 
         return ResponseEntity.ok().body(response);
     }

@@ -6,6 +6,7 @@ export default function Main() {
     const navigate = useNavigate();
     const [articleList, setArticleList] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const id = sessionStorage.getItem('member_id');
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -33,6 +34,46 @@ export default function Main() {
                 console.log("데이터 로딩 오류", error);
             }
         })
+    }
+
+    async function uploadArticle(event) {
+        event.preventDefault();
+        const title = event.target.title.value;
+        const image = event.target.image.value;
+        const content = event.target.content.value;
+
+        try {
+            const response = await fetch('http://localhost:8080/api/article/', {
+                method : 'PUT',
+                headers : {
+                    'Content-Type' : 'application/json',
+                },
+                body : JSON.stringify({
+                    'member_id' : id,
+                    'title' : title,
+                    'image' : image,
+                    'text' : content,
+                })
+            }).then(async (response) => {
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('upload success!');
+                    alert('게시글 업로드 완료.');
+                    closeModal();
+
+                    setArticleList([{
+                        article_id: data.article_id,
+                        owner_id: id,
+                        title: title,
+                        image: image,
+                        text: content,
+                        time: data.time,
+                    }, ...articleList]);
+                }
+            })
+        } catch (error) {
+            console.log("게시글 업로드 실패");
+        }
     }
 
     useEffect(() => {
@@ -67,7 +108,7 @@ export default function Main() {
                     <div className="modal">
                         <div className="modal-content">
                             <h3>게시글 작성</h3>
-                            <form>
+                            <form onSubmit={uploadArticle}>
                                 <label htmlFor="title">제목</label>
                                 <input type="text" id="title" name="title" placeholder="제목 입력" />
 
@@ -76,11 +117,12 @@ export default function Main() {
 
                                 <label htmlFor="content">게시글</label>
                                 <textarea id="content" name="content" rows="5" placeholder="게시글 내용 입력"></textarea>
+                            
+                                <div className="modal-buttons">
+                                    <button onClick={closeModal} className="cancel">취소</button>
+                                    <button className="submit" type="submit">업로드</button>
+                                </div>
                             </form>
-                            <div className="modal-buttons">
-                                <button onClick={closeModal} className="cancel">취소</button>
-                                <button className="submit">수정 완료</button>
-                            </div>
                         </div>
                     </div>
             )}
