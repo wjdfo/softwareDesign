@@ -94,7 +94,7 @@ export default function MyPage() {
     return (
         <div>
             <form onSubmit = {modifyPassword} >
-                <input id = 'password' placeholder = "새로운 비밀번호를 입력하세요." />
+                <input id = 'password' type = 'password' placeholder = "새로운 비밀번호를 입력하세요." />
                 <button type = 'submit'>변경</button>
             </form>
             <h2>내 게시글</h2>
