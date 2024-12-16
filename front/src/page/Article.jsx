@@ -105,6 +105,28 @@ export default function Article() {
         }
     }
 
+    async function deleteArticle(event) {
+        event.preventDefault();
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/article/${article_id}`, {
+                method : "DELETE",
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({
+                    "member_id" : id,
+                })
+            }).then(async (response) => {
+                alert('게시글이 삭제되었습니다.');
+                navigate('/');
+            })
+        } catch(error) {
+            console.log("게시글 삭제 실패 ", error);
+        }
+
+    }
+
     if (!article) return <div>Loading...</div>;
 
     return (
@@ -119,7 +141,7 @@ export default function Article() {
                         {
                             article.owner_id === id ? (<div className = "myOption">
                                                             <button type = 'button' id = "modify" onClick = {openModal}>수정</button>
-                                                            <button type = 'button' id = 'delete'>삭제</button>
+                                                            <button type = 'button' id = 'delete' onClick = {deleteArticle}>삭제</button>
                                                         </div>)
                                                     : (
                                                         <button type = 'button' onClick= {() => {makeChat();}}>Chat</button> 
