@@ -28,6 +28,7 @@ export default function Login() {
                     const data = await response.json();
 
                     sessionStorage.setItem("member_id", data.member_id);
+                    sessionStorage.setItem("password", password);
                     setIsLogin(true);
                     alert('로그인 되었습니다.');
                     navigate('/');
